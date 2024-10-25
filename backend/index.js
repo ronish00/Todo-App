@@ -8,7 +8,7 @@ const app = express();
 app.use(express.static("dist"));
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:5173" || "https://todo-app-yk1m.vercel.app/",
     optionsSuccessStatus: 204,
 }));
 
