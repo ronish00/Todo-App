@@ -14,7 +14,7 @@ function App() {
 
   const handleClick = () => {
     axios
-      .post("http://localhost:3000/add", {
+      .post("https://todo-app-5jrv.vercel.app/add", {
         item: item,
       })
       .then((result) => {
