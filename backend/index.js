@@ -9,6 +9,7 @@ app.use(express.static("dist"));
 
 // Define an array of allowed origins
 const allowedOrigins = [
+    "http://localhost:3000",
     "http://localhost:5173",
     "https://ronish-personal-todo.vercel.app"
 ];
