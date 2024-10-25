@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/get")
+      .get("https://todo-app-5jrv.vercel.app/get")
       .then((result) => setTodos(result.data))
       .catch((err) => console.log(err));
   }, []);
