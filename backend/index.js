@@ -10,7 +10,8 @@ app.use(express.static("dist"));
 // Define an array of allowed origins
 const allowedOrigins = [
     "http://localhost:5173",
-    "https://todo-app-yk1m.vercel.app"
+    "https://todo-app-yk1m.vercel.app",
+    "https://ronish-personal-todo.vercel.app/"
 ];
 
 // Set up CORS to allow requests from the defined origins
