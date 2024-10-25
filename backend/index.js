@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const Todo = require("./models/todo.model.js");
+const Todo = require("./src/models/todo.model.js");
 
 const app = express();
 
