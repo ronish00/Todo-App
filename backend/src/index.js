@@ -1,29 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const Todo = require("./src/models/todo.model.js");
+const Todo = require("./models/todo.model.js");
 
 const app = express();
 
 app.use(express.static("dist"));
 
-// Define an array of allowed origins
-const allowedOrigins = [
-  "https://ronish-personal-todo.vercel.app",
-  "http://localhost:3000",
-  "http://localhost:5173",
-];
-
 // Set up CORS to allow requests from the defined origins
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, origin);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: 'http://localhost:5173',
     optionsSuccessStatus: 204,
   })
 );
