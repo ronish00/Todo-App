@@ -14,7 +14,7 @@ function App() {
 
   const handleClick = () => {
     axios
-      .post("https://todo-app-5jrv.vercel.app/add", {
+      .post("http://localhost:3000/add", {
         item: item,
       })
       .then((result) => {
@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://todo-app-5jrv.vercel.app/get")
+      .get("http://localhost:3000/get")
       .then((result) => setTodos(result.data))
       .catch((err) => console.log(err));
   }, []);

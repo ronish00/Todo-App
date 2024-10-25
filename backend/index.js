@@ -8,8 +8,8 @@ const app = express();
 app.use(express.static("dist"));
 
 app.use(cors({
-    origin: "http://localhost:5174",
-    optionsSuccessStatus: 204
+    origin: "http://localhost:5173",
+    optionsSuccessStatus: 204,
 }));
 
 app.use(express.json());
