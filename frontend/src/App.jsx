@@ -58,7 +58,7 @@ function App() {
   }, []);
 
   return (
-    <div className="px-72">
+    <div className="2xl:px-72 sm:px-4 lg:px-56">
       <h1 className="text-3xl font-bold text-violet-600 mb-12">TODO LIST</h1>
       <form className="mb-11 text-start flex w-full">
         <input
