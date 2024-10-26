@@ -53,7 +53,9 @@ function App() {
   useEffect(() => {
     axios
       .get("http://localhost:3000/get")
-      .then((result) => setTodos(result.data))
+      .then((result) => {
+        setTodos(result.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
