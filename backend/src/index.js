@@ -1,4 +1,5 @@
 const express = require("express");
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const Todo = require("./models/todo.model.js");
@@ -17,10 +18,9 @@ app.use(
 
 app.use(express.json());
 
-const port = 3000;
 
 mongoose
-  .connect("mongodb://localhost:27017/todo")
+  .connect(`${process.env.MONGODB_URL}/${process.env.MONGODB_NAME}`)
   .then(() => console.log("Connection established"));
 
 app.get("/get", async (req, res) => {
@@ -71,6 +71,8 @@ app.put("/update/:id", async (req, res) => {
     console.log(err);
   }
 });
+
+const port = process.env.PORT || 3000
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
