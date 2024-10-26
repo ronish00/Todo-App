@@ -8,17 +8,24 @@ const app = express();
 
 app.use(express.static("dist"));
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://ronish-personal-todo.vercel.app"
+];
+
 // Set up CORS to allow requests from the defined origins
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    optionsSuccessStatus: 204,
-  })
-);
+app.use(cors({
+  origin: function (origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, origin);
+      } else {
+          callback(new Error('Not allowed by CORS'));
+      }
+  },
+  optionsSuccessStatus: 204,
+}));
 
 app.use(express.json());
-
-console.log(process.env.MONGODB_URL)
 
 
 mongoose
