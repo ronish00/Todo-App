@@ -6,30 +6,34 @@ import EditIcon from "@mui/icons-material/Edit";
 
 function App() {
   const [todos, setTodos] = useState([]);
-  const [item, setItem] = useState();
+  const [item, setItem] = useState('');
   const [editItem, setEditItem] = useState(null);
   const [editValue, setEditValue] = useState("");
 
   const inputRef = useRef(null);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (!item) return; // Prevent adding empty todos
     axios
       .post("https://todo-app-pp1t.onrender.com/add", {
         item: item,
       })
       .then((result) => {
-        location.reload();
+        setTodos((prev) => [result.data, ...prev]);
+        setItem(''); // Clear the input field only after successful addition
       })
       .catch((err) => {
         console.log(err);
+        alert("Error adding todo"); // Optional: notify the user of the error
       });
   };
-
+  
   const handleDelete = (id) => {
     axios
       .delete("https://todo-app-pp1t.onrender.com/delete/" + id)
       .then((result) => {
-        location.reload();
+        setTodos((prev) => prev.filter(todo => todo._id !== id))
       })
       .catch((err) => console.log(err));
   };
@@ -42,14 +46,20 @@ function App() {
 
   const handleUpdate = (id) => {
     axios.put("https://todo-app-pp1t.onrender.com/update/" + id, {
-      item: editValue
+      item: editValue,
     })
     .then((result) => {
-      location.reload();
+      setTodos((prev) => 
+        prev.map(todo => 
+          todo._id === id ? { ...todo, item: editValue } : todo
+        )
+      );
+      setEditItem(null); // Clear the edit state after updating
+      setEditValue(''); // Clear the edit input
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
   };
-
+  
   useEffect(() => {
     axios
       .get("https://todo-app-pp1t.onrender.com/get")
@@ -66,6 +76,7 @@ function App() {
         <input
           type="text"
           className="border rounded py-2 px-5 w-full"
+          value={item}
           onChange={(e) => setItem(e.target.value)}
           placeholder="Add Todo List"
         />
