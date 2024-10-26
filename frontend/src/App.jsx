@@ -14,7 +14,7 @@ function App() {
 
   const handleClick = () => {
     axios
-      .post("http://localhost:3000/add", {
+      .post("https://todo-app-pp1t.onrender.com/add", {
         item: item,
       })
       .then((result) => {
@@ -27,7 +27,7 @@ function App() {
 
   const handleDelete = (id) => {
     axios
-      .delete("http://localhost:3000/delete/" + id)
+      .delete("https://todo-app-pp1t.onrender.com/delete/" + id)
       .then((result) => {
         location.reload();
       })
@@ -41,7 +41,7 @@ function App() {
   };
 
   const handleUpdate = (id) => {
-    axios.put("http://localhost:3000/update/" + id, {
+    axios.put("https://todo-app-pp1t.onrender.com/update/" + id, {
       item: editValue
     })
     .then((result) => {
@@ -52,7 +52,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/get")
+      .get("https://todo-app-pp1t.onrender.com/get")
       .then((result) => {
         setTodos(result.data);
       })
